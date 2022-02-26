@@ -1,7 +1,6 @@
 package pl.misiopecki.projekt3;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -23,17 +22,17 @@ public class SaveUnits implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         Army army;
         try {
-            army = objectMapper.readValue(readUnit_usingClassPath(), Army.class);
+            army = objectMapper.readValue(readDataFile(), Army.class);
             army.getUnits().forEach(repository::save);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private File readUnit_usingClassPath() throws IOException {
+    private File readDataFile() throws IOException {
         return new ClassPathResource(
             "data/units.json").getFile();
     }

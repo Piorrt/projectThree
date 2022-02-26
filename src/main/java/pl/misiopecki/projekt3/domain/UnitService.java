@@ -1,12 +1,10 @@
 package pl.misiopecki.projekt3.domain;
 
 import org.springframework.stereotype.Component;
-import pl.misiopecki.projekt3.domain.model.Unit;
 import pl.misiopecki.projekt3.domain.model.UnitInfo;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 
 @Component
