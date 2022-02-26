@@ -12,22 +12,17 @@ import pl.misiopecki.projekt3.domain.model.UnitInfo;
 @RequestMapping("/units")
 public class UnitController {
 
-    private UnitService unitService;
-
+    private final UnitService unitService;
 
     public UnitController(UnitService unitService) {
         this.unitService = unitService;
     }
 
-    @GetMapping(
-        consumes = "application/json",
-        produces = "application/json"
-    )
+    @GetMapping
     public ResponseEntity<UnitInfo> getUnitInformation(
         @RequestParam(name = "name", required = false, defaultValue = "none") String name,
         @RequestParam(name = "count", required = false, defaultValue = "1") Integer count
     ) {
-        System.out.println("Name ------ " + name);
         UnitInfo information = unitService.getInformation(name, count);
         if (information == null) {
             return ResponseEntity.notFound().build();

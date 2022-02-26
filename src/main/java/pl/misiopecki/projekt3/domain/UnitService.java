@@ -19,23 +19,18 @@ public class UnitService {
     }
 
     public UnitInfo getInformation(String name, Integer count) {
-        Optional<Unit> foundUnit = repository.findByName(name);
-        if (foundUnit.isEmpty()) {
-            return null;
-        }
-        Unit unit = foundUnit.get();
-        System.out.println("UNIT ---- " + unit);
-
-        UnitInfo info = UnitInfo.builder()
-            .name(foundUnit.get().getName())
-            .buildTime(unit.getBuild_time() * count)
-            .hitPoints(unit.getHit_points() * count)
-            .attack(unit.getAttack() * count)
-            .cost(countCost(unit.getCost(), count))
-            .build();
-
-        System.out.println("INFO --------" + info.toString());
-        return info;
+        return repository.findByName(name)
+            .map(unit ->
+                UnitInfo.builder()
+                    .name(unit.getName())
+                    .numberOfUnit(count)
+                    .buildTime(unit.getBuild_time() * count)
+                    .hitPoints(unit.getHit_points() * count)
+                    .attack(unit.getAttack() * count)
+                    .cost(countCost(unit.getCost(), count))
+                    .build()
+            )
+            .orElse(null);
     }
 
     private Map<String, Integer> countCost(Map<String, String> unitCost, Integer count) {

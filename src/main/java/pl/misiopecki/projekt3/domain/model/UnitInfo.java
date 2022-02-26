@@ -10,6 +10,7 @@ import java.util.Map;
 public class UnitInfo {
 
     String name;
+    Integer numberOfUnit;
     Map<String, Integer> cost;
     Integer buildTime;
     Integer attack;

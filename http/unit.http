@@ -1,4 +1,4 @@
 ###
-GET http://localhost:8080/units?name=Archer&count=5
+GET http://localhost:8080/units?name=Cavalry Archer
 Content-Type: application/json
 Accept: application/json
