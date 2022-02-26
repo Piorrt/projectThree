@@ -28,7 +28,7 @@ public class UnitService {
                     .cost(countCost(unit.getCost(), count))
                     .build()
             )
-            .orElse(null);
+            .orElseThrow(() -> new UnitNotFoundException("Unit " + name + " not found"));
     }
 
     private Map<String, Integer> countCost(Map<String, String> unitCost, Integer count) {

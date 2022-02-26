@@ -9,7 +9,7 @@ import pl.misiopecki.projekt3.domain.UnitService;
 import pl.misiopecki.projekt3.domain.model.UnitInfo;
 
 @RestController
-@RequestMapping("/units")
+@RequestMapping("/api/units")
 public class UnitController {
 
     private final UnitService unitService;
@@ -23,10 +23,6 @@ public class UnitController {
         @RequestParam(name = "name", required = false, defaultValue = "none") String name,
         @RequestParam(name = "count", required = false, defaultValue = "1") Integer count
     ) {
-        UnitInfo information = unitService.getInformation(name, count);
-        if (information == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(information);
+        return ResponseEntity.ok(unitService.getInformation(name, count));
     }
 }
